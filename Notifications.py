@@ -1,14 +1,6 @@
-from configparser import ConfigParser
 import requests
 
-def load_config(file_path='config.ini'):
-    config = ConfigParser()
-    config.read(file_path)
-    return config['credentials']
-
-
-def send_notification(message="test", title="", priority=0):
-    config_data = load_config()
+def send_notification(config_data, message="test", title="", priority=0):
     token = config_data['api_token']
     user = config_data['user_key']
     url = "https://api.pushover.net/1/messages.json"
